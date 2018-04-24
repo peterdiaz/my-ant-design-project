@@ -140,7 +140,7 @@ export default class SiderMenu extends PureComponent {
     }
   };
   /**
-   * 获得菜单子节点
+   * Get Menu subnode
    * @memberof SiderMenu
    */
   getNavMenuItems = menusData => {
@@ -209,13 +209,13 @@ export default class SiderMenu extends PureComponent {
         collapsed={collapsed}
         breakpoint="lg"
         onCollapse={onCollapse}
-        width={256}
+        width={270}
         className={styles.sider}
       >
         <div className={styles.logo} key="logo">
           <Link to="/">
             <img src={logo} alt="logo" />
-            <h1>Ant Design Pro</h1>
+            <h1>Damasco On Trello</h1>
           </Link>
         </div>
         <Menu

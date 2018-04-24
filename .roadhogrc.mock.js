@@ -7,28 +7,28 @@ import { getProfileAdvancedData } from './mock/profile';
 import { getNotices } from './mock/notices';
 import { format, delay } from 'roadhog-api-doc';
 
-// 是否禁用代理
+// Disable Proxy
 const noProxy = process.env.NO_PROXY === 'true';
 
-// 代码中会兼容本地 service mock 以及部署站点的静态数据
+// The code will be compatible with the local service mock and the static data of the deployment site
 const proxy = {
-  // 支持值为 Object 和 Array
+  // The supported values are Object and Array
   'GET /api/currentUser': {
-    $desc: '获取当前用户接口',
+    $desc: 'Get current user interface',
     $params: {
       pageSize: {
-        desc: '分页',
+        desc: 'Paging',
         exp: 2,
       },
     },
     $body: {
-      name: 'Serati Ma',
+      name: 'Peter Diaz',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
       userid: '00000001',
       notifyCount: 12,
     },
   },
-  // GET POST 可省略
+  // GET POST can be omitted
   'GET /api/users': [
     {
       key: '1',
@@ -55,7 +55,7 @@ const proxy = {
   'POST /api/rule': {
     $params: {
       pageSize: {
-        desc: '分页',
+        desc: 'Paging',
         exp: 2,
       },
     },

@@ -37,7 +37,7 @@ const { RangePicker } = DatePicker;
 const rankingListData = [];
 for (let i = 0; i < 7; i += 1) {
   rankingListData.push({
-    title: `工专路 ${i} 号店`,
+    title: `Gong Yi Lu ${1} shop`,
     total: 323234,
   });
 }
@@ -134,8 +134,8 @@ export default class Analysis extends Component {
 
     const menu = (
       <Menu>
-        <Menu.Item>操作一</Menu.Item>
-        <Menu.Item>操作二</Menu.Item>
+        <Menu.Item>Item 1</Menu.Item>
+        <Menu.Item>Item 2</Menu.Item>
       </Menu>
     );
 
@@ -151,16 +151,16 @@ export default class Analysis extends Component {
       <div className={styles.salesExtraWrap}>
         <div className={styles.salesExtra}>
           <a className={this.isActive('today')} onClick={() => this.selectDate('today')}>
-            今日
+            Today
           </a>
           <a className={this.isActive('week')} onClick={() => this.selectDate('week')}>
-            本周
+            Week
           </a>
           <a className={this.isActive('month')} onClick={() => this.selectDate('month')}>
-            本月
+            Month
           </a>
           <a className={this.isActive('year')} onClick={() => this.selectDate('year')}>
-            全年
+            Year
           </a>
         </div>
         <RangePicker
@@ -173,25 +173,25 @@ export default class Analysis extends Component {
 
     const columns = [
       {
-        title: '排名',
+        title: 'Rank',
         dataIndex: 'index',
         key: 'index',
       },
       {
-        title: '搜索关键词',
+        title: 'Keyword',
         dataIndex: 'keyword',
         key: 'keyword',
         render: text => <a href="/">{text}</a>,
       },
       {
-        title: '用户数',
+        title: 'User Number',
         dataIndex: 'count',
         key: 'count',
         sorter: (a, b) => a.count - b.count,
         className: styles.alignRight,
       },
       {
-        title: '周涨幅',
+        title: 'Weekly gains',
         dataIndex: 'range',
         key: 'range',
         sorter: (a, b) => a.range - b.range,
@@ -211,7 +211,7 @@ export default class Analysis extends Component {
         <Col span={12}>
           <NumberInfo
             title={data.name}
-            subTitle="转化率"
+            subTitle="Conversion Rate"
             gap={2}
             total={`${data.cvr * 100}%`}
             theme={currentKey !== data.name && 'light'}
@@ -246,21 +246,23 @@ export default class Analysis extends Component {
           <Col {...topColResponsiveProps}>
             <ChartCard
               bordered={false}
-              title="总销售额"
+              title="Total Sales"
               action={
-                <Tooltip title="指标说明">
+                <Tooltip title="Indicator Description">
                   <Icon type="info-circle-o" />
                 </Tooltip>
               }
               total={() => <span dangerouslySetInnerHTML={{ __html: yuan(126560) }} />}
-              footer={<Field label="日均销售额" value={`￥${numeral(12423).format('0,0')}`} />}
+              footer={
+                <Field label="Average Daily Sales" value={`￥${numeral(12423).format('0,0')}`} />
+              }
               contentHeight={46}
             >
               <Trend flag="up" style={{ marginRight: 16 }}>
-                周同比<span className={styles.trendText}>12%</span>
+                Weekly Ratio<span className={styles.trendText}>12%</span>
               </Trend>
               <Trend flag="down">
-                日环比<span className={styles.trendText}>11%</span>
+                Cycle Date<span className={styles.trendText}>11%</span>
               </Trend>
             </ChartCard>
           </Col>

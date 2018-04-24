@@ -20,7 +20,7 @@ const { Content, Header, Footer } = Layout;
 const { AuthorizedRoute, check } = Authorized;
 
 /**
- * 根据菜单取得重定向地址.
+ * Get redirected address based on menu.
  */
 const redirectData = [];
 const getRedirect = item => {
@@ -39,9 +39,9 @@ const getRedirect = item => {
 getMenuData().forEach(getRedirect);
 
 /**
- * 获取面包屑映射
- * @param {Object} menuData 菜单配置
- * @param {Object} routerData 路由配置
+ * Get breadcrumb mapping
+ * @param {Object} menuData Menu Configuration
+ * @param {Object} routerData Routing Configuration
  */
 const getBreadcrumbNameMap = (menuData, routerData) => {
   const result = {};
@@ -108,21 +108,21 @@ class BasicLayout extends React.PureComponent {
       type: 'user/fetchCurrent',
     });
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     unenquireScreen(this.enquireHandler);
   }
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;
-    let title = 'Ant Design Pro';
+    let title = 'Damasco On Trello';
     if (routerData[pathname] && routerData[pathname].name) {
-      title = `${routerData[pathname].name} - Ant Design Pro`;
+      title = `${routerData[pathname].name} - Damasco on Trello`;
     }
     return title;
   }
   getBashRedirect = () => {
     // According to the url parameter to redirect
-    // 这里是重定向的,重定向到 url 的 redirect 参数所示地址
+    // Here is the redirect, redirected to the url's redirect parameter
     const urlParams = new URL(window.location.href);
 
     const redirect = urlParams.searchParams.get('redirect');
@@ -147,7 +147,7 @@ class BasicLayout extends React.PureComponent {
     });
   };
   handleNoticeClear = type => {
-    message.success(`清空了${type}`);
+    message.success(`Cleared ${type}`);
     this.props.dispatch({
       type: 'global/clearNotices',
       payload: type,
@@ -186,7 +186,7 @@ class BasicLayout extends React.PureComponent {
       <Layout>
         <SiderMenu
           logo={logo}
-          // 不带Authorized参数的情况下如果没有权限,会强制跳到403界面
+          // If there is no permission without Authorization parameter, it will force jump to 403 interface
           // If you do not have the Authorized parameter
           // you will be forced to jump to the 403 interface without permission
           Authorized={Authorized}
@@ -234,8 +234,8 @@ class BasicLayout extends React.PureComponent {
             <GlobalFooter
               links={[
                 {
-                  key: 'Pro 首页',
-                  title: 'Pro 首页',
+                  key: 'Pro Home',
+                  title: 'Pro Home',
                   href: 'http://pro.ant.design',
                   blankTarget: true,
                 },
@@ -254,7 +254,7 @@ class BasicLayout extends React.PureComponent {
               ]}
               copyright={
                 <Fragment>
-                  Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
+                  Copyright <Icon type="copyright" /> 2018 Condor Labs SAS
                 </Fragment>
               }
             />

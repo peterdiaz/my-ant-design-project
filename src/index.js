@@ -8,6 +8,8 @@ import createHistory from 'history/createHashHistory';
 import createLoading from 'dva-loading';
 import 'moment/locale/zh-cn';
 import './rollbar';
+import model from './models/global';
+import router from './router';
 
 import './index.less';
 // 1. Initialize
@@ -19,10 +21,10 @@ const app = dva({
 app.use(createLoading());
 
 // 3. Register global model
-app.model(require('./models/global').default);
+app.model(model);
 
 // 4. Router
-app.router(require('./router').default);
+app.router(router);
 
 // 5. Start
 app.start('#root');

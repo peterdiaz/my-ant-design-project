@@ -14,22 +14,26 @@ class Login extends Component {
     onTabChange: () => {},
     onSubmit: () => {},
   };
+
   static propTypes = {
     className: PropTypes.string,
     defaultActiveKey: PropTypes.string,
     onTabChange: PropTypes.func,
     onSubmit: PropTypes.func,
   };
+
   static childContextTypes = {
     tabUtil: PropTypes.object,
     form: PropTypes.object,
     updateActive: PropTypes.func,
   };
+
   state = {
     type: this.props.defaultActiveKey,
     tabs: [],
     active: {},
   };
+
   getChildContext() {
     return {
       tabUtil: {
@@ -58,12 +62,14 @@ class Login extends Component {
       },
     };
   }
+
   onSwitch = type => {
     this.setState({
       type,
     });
     this.props.onTabChange(type);
   };
+
   handleSubmit = e => {
     e.preventDefault();
     const { active, type } = this.state;
@@ -72,6 +78,7 @@ class Login extends Component {
       this.props.onSubmit(err, values);
     });
   };
+
   render() {
     const { className, children } = this.props;
     const { type, tabs } = this.state;
