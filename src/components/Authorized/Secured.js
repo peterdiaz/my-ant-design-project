@@ -2,7 +2,7 @@ import React from 'react';
 import Exception from '../Exception/index';
 import CheckPermissions from './CheckPermissions';
 /**
- * 默认不能访问任何页面
+ * Cannot access any page by default
  * default is "NULL"
  */
 const Exception403 = () => <Exception type="403" style={{ minHeight: 500, height: '80%' }} />;
@@ -19,12 +19,8 @@ const checkIsInstantiation = target => {
 };
 
 /**
- * 用于判断是否拥有权限访问此view权限
- * authority 支持传入  string ,funtion:()=>boolean|Promise
- * e.g. 'user' 只有user用户能访问
- * e.g. 'user,admin' user和 admin 都能访问
- * e.g. ()=>boolean 返回true能访问,返回false不能访问
- * e.g. Promise  then 能访问   catch不能访问
+ * Used to determine if you have permission to access this view
+ * authority Support incoming  string ,funtion:()=>boolean|Promise
  * e.g. authority support incoming string, funtion: () => boolean | Promise
  * e.g. 'user' only user user can access
  * e.g. 'user, admin' user and admin can access
@@ -36,7 +32,6 @@ const checkIsInstantiation = target => {
 const authorize = (authority, error) => {
   /**
    * conversion into a class
-   * 防止传入字符串时找不到staticContext造成报错
    * String parameters can cause staticContext not found error
    */
   let classError = false;

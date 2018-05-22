@@ -12,6 +12,7 @@ import {
   Tooltip,
   Menu,
   Dropdown,
+  Alert,
 } from 'antd';
 import numeral from 'numeral';
 import {
@@ -28,6 +29,8 @@ import {
 import Trend from 'components/Trend';
 import NumberInfo from 'components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
+
+import Authorized from '../../utils/Authorized';
 
 import styles from './Analysis.less';
 
@@ -240,8 +243,15 @@ export default class Analysis extends Component {
       style: { marginBottom: 24 },
     };
 
+    const noMatch = <Alert message="No permission." type="error" showIcon />;
+
     return (
       <Fragment>
+        <div>
+          <Authorized authority="user" noMatch={noMatch}>
+            <Alert message="user Passed!" type="success" showIcon />
+          </Authorized>
+        </div>
         <Row gutter={24}>
           <Col {...topColResponsiveProps}>
             <ChartCard
