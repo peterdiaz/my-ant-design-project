@@ -7,28 +7,8 @@ const menuData = [
     path: 'dashboard',
     children: [
       {
-        name: 'Analysis',
-        path: 'analysis',
-      },
-      {
         name: 'Test',
         path: 'test',
-      },
-    ],
-  },
-  {
-    name: 'New Layout',
-    icon: 'user',
-    path: 'new',
-    children: [
-      {
-        name: 'Page 1',
-        path: 'page1',
-      },
-      {
-        name: 'Page 2',
-        path: 'page2',
-        hideInMenu: true,
       },
     ],
   },

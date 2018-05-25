@@ -19,6 +19,7 @@ export default class LoginPage extends Component {
   onTabChange = type => {
     this.setState({ type });
   };
+  P;
 
   handleSubmit = (err, values) => {
     const { type } = this.state;
@@ -66,6 +67,7 @@ export default class LoginPage extends Component {
             </a>
           </div>
           <Submit loading={submitting}>Log In</Submit>
+          <div>Condor Labs SAS</div>
         </Login>
       </div>
     );

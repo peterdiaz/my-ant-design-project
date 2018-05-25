@@ -72,20 +72,8 @@ export const getRouterData = app => {
     '/': {
       component: dynamicWrapper(app, ['user', 'login'], () => import('../layouts/BasicLayout')),
     },
-    '/dashboard/analysis': {
-      component: dynamicWrapper(app, ['chart'], () => import('../routes/Dashboard/Analysis')),
-    },
     '/dashboard/test': {
-      component: dynamicWrapper(app, ['monitor'], () => import('../routes/Dashboard/Test')),
-    },
-    '/new': {
-      component: dynamicWrapper(app, ['monitor'], () => import('../layouts/NewLayout')),
-    },
-    '/new/page1': {
-      component: dynamicWrapper(app, ['monitor'], () => import('../routes/Dashboard/Page1')),
-    },
-    '/new/page2': {
-      component: dynamicWrapper(app, ['monitor'], () => import('../routes/Dashboard/Page2')),
+      component: dynamicWrapper(app, ['user'], () => import('../routes/Dashboard/Test')),
     },
     '/result/success': {
       component: dynamicWrapper(app, [], () => import('../routes/Result/Success')),
