@@ -71,13 +71,13 @@ export function getPlainNode(nodeList, parentPath = '') {
 }
 
 export function digitUppercase(n) {
-  const fraction = ['角', '分'];
-  const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
-  const unit = [['元', '万', '亿'], ['', '拾', '佰', '仟']];
+  const fraction = ['Horas', 'Minutes'];
+  const digit = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+  const unit = [['Yuan', 'Wan', 'Yi'], ['', 'ten', 'hundred', 'thousand']];
   let num = Math.abs(n);
   let s = '';
   fraction.forEach((item, index) => {
-    s += (digit[Math.floor(num * 10 * 10 ** index) % 10] + item).replace(/零./, '');
+    s += (digit[Math.floor(num * 10 * 10 ** index) % 10] + item).replace(/0./, '');
   });
   s = s || '整';
   num = Math.floor(num);
@@ -87,13 +87,13 @@ export function digitUppercase(n) {
       p = digit[num % 10] + unit[1][j] + p;
       num = Math.floor(num / 10);
     }
-    s = p.replace(/(零.)*零$/, '').replace(/^$/, '零') + unit[0][i] + s;
+    s = p.replace(/(0.)*0$/, '').replace(/^$/, '0') + unit[0][i] + s;
   }
 
   return s
-    .replace(/(零.)*零元/, '元')
-    .replace(/(零.)+/g, '零')
-    .replace(/^整$/, '零元整');
+    .replace(/(0.)*0Yuan/, 'Yuan')
+    .replace(/(0.)+/g, '0')
+    .replace(/^整$/, '0Yuan整');
 }
 
 function getRelation(str1, str2) {
@@ -115,9 +115,9 @@ function getRenderArr(routes) {
   renderArr.push(routes[0]);
   for (let i = 1; i < routes.length; i += 1) {
     let isAdd = false;
-    // 是否包含
+    // Does it Contain
     isAdd = renderArr.every(item => getRelation(item, routes[i]) === 3);
-    // 去重
+    // To heavy
     renderArr = renderArr.filter(item => getRelation(item, routes[i]) !== 1);
     if (isAdd) {
       renderArr.push(routes[i]);

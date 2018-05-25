@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Link } from 'dva/router';
-import { Checkbox, Alert, Icon } from 'antd';
+import { Checkbox, Alert } from 'antd';
 import Login from 'components/Login';
 import styles from './Login.less';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
+const { Tab, UserName, Password, Submit } = Login;
 
 @connect(({ login, loading }) => ({
   login,
@@ -20,6 +19,7 @@ export default class LoginPage extends Component {
   onTabChange = type => {
     this.setState({ type });
   };
+  P;
 
   handleSubmit = (err, values) => {
     const { type } = this.state;
@@ -67,6 +67,7 @@ export default class LoginPage extends Component {
             </a>
           </div>
           <Submit loading={submitting}>Log In</Submit>
+          <div>Condor Labs SAS</div>
         </Login>
       </div>
     );
