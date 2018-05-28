@@ -9,33 +9,33 @@ const { Description } = DescriptionList;
 
 const progressColumns = [
   {
-    title: '时间',
+    title: 'time',
     dataIndex: 'time',
     key: 'time',
   },
   {
-    title: '当前进度',
+    title: 'rate',
     dataIndex: 'rate',
     key: 'rate',
   },
   {
-    title: '状态',
+    title: 'status',
     dataIndex: 'status',
     key: 'status',
     render: text =>
       text === 'success' ? (
-        <Badge status="success" text="成功" />
+        <Badge status="success" text="Success" />
       ) : (
-        <Badge status="processing" text="进行中" />
+        <Badge status="processing" text="Processing" />
       ),
   },
   {
-    title: '操作员ID',
+    title: 'Operator ID',
     dataIndex: 'operator',
     key: 'operator',
   },
   {
-    title: '耗时',
+    title: 'Cost',
     dataIndex: 'cost',
     key: 'cost',
   },
@@ -65,7 +65,7 @@ export default class BasicProfile extends Component {
         amount += Number(item.amount);
       });
       goodsData = basicGoods.concat({
-        id: '总计',
+        id: 'Total',
         num,
         amount,
       });
@@ -82,7 +82,7 @@ export default class BasicProfile extends Component {
     };
     const goodsColumns = [
       {
-        title: '商品编号',
+        title: 'Id',
         dataIndex: 'id',
         key: 'id',
         render: (text, row, index) => {
@@ -98,26 +98,26 @@ export default class BasicProfile extends Component {
         },
       },
       {
-        title: '商品名称',
+        title: 'name',
         dataIndex: 'name',
         key: 'name',
         render: renderContent,
       },
       {
-        title: '商品条码',
+        title: 'barcode',
         dataIndex: 'barcode',
         key: 'barcode',
         render: renderContent,
       },
       {
-        title: '单价',
+        title: 'price',
         dataIndex: 'price',
         key: 'price',
         align: 'right',
         render: renderContent,
       },
       {
-        title: '数量（件）',
+        title: 'num',
         dataIndex: 'num',
         key: 'num',
         align: 'right',
@@ -129,7 +129,7 @@ export default class BasicProfile extends Component {
         },
       },
       {
-        title: '金额',
+        title: 'ammount',
         dataIndex: 'amount',
         key: 'amount',
         align: 'right',
@@ -142,16 +142,16 @@ export default class BasicProfile extends Component {
       },
     ];
     return (
-      <PageHeaderLayout title="基础详情页">
+      <PageHeaderLayout title="Basic details page">
         <Card bordered={false}>
-          <DescriptionList size="large" title="退款申请" style={{ marginBottom: 32 }}>
-            <Description term="取货单号">1000000000</Description>
-            <Description term="状态">已取货</Description>
-            <Description term="销售单号">1234123421</Description>
-            <Description term="子订单">3214321432</Description>
+          <DescriptionList size="large" title="refund application" style={{ marginBottom: 32 }}>
+            <Description term="Pickup No.">1000000000</Description>
+            <Description term="Status">Picked</Description>
+            <Description term="Sales order number">1234123421</Description>
+            <Description term="Suborders">3214321432</Description>
           </DescriptionList>
           <Divider style={{ marginBottom: 32 }} />
-          <DescriptionList size="large" title="用户信息" style={{ marginBottom: 32 }}>
+          <DescriptionList size="large" title="User Info" style={{ marginBottom: 32 }}>
             <Description term="用户姓名">付小小</Description>
             <Description term="联系电话">18100000000</Description>
             <Description term="常用快递">菜鸟仓储</Description>

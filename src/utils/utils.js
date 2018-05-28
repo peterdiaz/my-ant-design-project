@@ -1,4 +1,5 @@
 import moment from 'moment';
+import featureFlags from '../common/featureFlags';
 
 export function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
@@ -158,4 +159,12 @@ const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-
 
 export function isUrl(path) {
   return reg.test(path);
+}
+
+export function isFeatureEnabled(featureName) {
+  try {
+    return featureFlags[featureName].enabled;
+  } catch (error) {
+    return false;
+  }
 }

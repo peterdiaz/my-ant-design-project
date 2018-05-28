@@ -75,6 +75,10 @@ export const getRouterData = app => {
     '/dashboard/test': {
       component: dynamicWrapper(app, ['user'], () => import('../routes/Dashboard/Test')),
     },
+    '/profile': {
+      component: dynamicWrapper(app, ['profile'], () => import('../routes/Profile/BasicProfile')),
+    },
+    // ----------------
     '/result/success': {
       component: dynamicWrapper(app, [], () => import('../routes/Result/Success')),
     },

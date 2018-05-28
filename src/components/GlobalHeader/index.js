@@ -7,6 +7,7 @@ import { Link } from 'dva/router';
 import NoticeIcon from '../NoticeIcon';
 import HeaderSearch from '../HeaderSearch';
 import styles from './index.less';
+import { isFeatureEnabled } from '../../utils/utils';
 
 export default class GlobalHeader extends PureComponent {
   componentWillUnmount() {
@@ -68,14 +69,11 @@ export default class GlobalHeader extends PureComponent {
     } = this.props;
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
-        <Menu.Item disabled>
-          <Icon type="user" />Peter Diaz
+        <Menu.Item key="myProfile">
+          <Icon type="user" />My Profile
         </Menu.Item>
-        <Menu.Item disabled>
+        <Menu.Item key="setting">
           <Icon type="setting" />Settings
-        </Menu.Item>
-        <Menu.Item key="triggerError">
-          <Icon type="close-circle" />Trigger Errors
         </Menu.Item>
         <Menu.Divider />
         <Menu.Item key="logout">
@@ -98,57 +96,64 @@ export default class GlobalHeader extends PureComponent {
           onClick={this.toggle}
         />
         <div className={styles.right}>
-          <HeaderSearch
-            className={`${styles.action} ${styles.search}`}
-            placeholder="Site Search"
-            dataSource={['Search Tip 1', 'Search Tip 2', 'Search Tip 3']}
-            onSearch={value => {
-              console.log('input', value); // eslint-disable-line
-            }}
-            onPressEnter={value => {
-              console.log('enter', value); // eslint-disable-line
-            }}
-          />
-          <Tooltip title="Use Documents">
-            <a
-              target="_blank"
-              href="http://pro.ant.design/docs/getting-started"
-              rel="noopener noreferrer"
+          {isFeatureEnabled('dot_search_box') && (
+            <HeaderSearch
+              className={`${styles.action} ${styles.search}`}
+              placeholder="Site Search"
+              dataSource={['Search Tip 1', 'Search Tip 2', 'Search Tip 3']}
+              onSearch={value => {
+                console.log('input', value); // eslint-disable-line
+              }}
+              onPressEnter={value => {
+                console.log('enter', value); // eslint-disable-line
+              }}
+            />
+          )}
+          {isFeatureEnabled('dot_documentation') && (
+            <Tooltip title="Documentation">
+              <a
+                target="_blank"
+                href="http://pro.ant.design/docs/getting-started"
+                rel="noopener noreferrer"
+                className={styles.action}
+              >
+                <Icon type="question-circle-o" />
+              </a>
+            </Tooltip>
+          )}
+
+          {isFeatureEnabled('dot_notices') && (
+            <NoticeIcon
               className={styles.action}
+              count={currentUser.notifyCount}
+              onItemClick={(item, tabProps) => {
+                console.log(item, tabProps); // eslint-disable-line
+              }}
+              onClear={onNoticeClear}
+              onPopupVisibleChange={onNoticeVisibleChange}
+              loading={fetchingNotices}
+              popupAlign={{ offset: [20, -16] }}
             >
-              <Icon type="question-circle-o" />
-            </a>
-          </Tooltip>
-          <NoticeIcon
-            className={styles.action}
-            count={currentUser.notifyCount}
-            onItemClick={(item, tabProps) => {
-              console.log(item, tabProps); // eslint-disable-line
-            }}
-            onClear={onNoticeClear}
-            onPopupVisibleChange={onNoticeVisibleChange}
-            loading={fetchingNotices}
-            popupAlign={{ offset: [20, -16] }}
-          >
-            <NoticeIcon.Tab
-              list={noticeData['Notice']}
-              title="Notice"
-              emptyText="You have reviewed all notifications"
-              emptyImage="https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg"
-            />
-            <NoticeIcon.Tab
-              list={noticeData['News']}
-              title="News"
-              emptyText="You have read all the messages"
-              emptyImage="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
-            />
-            <NoticeIcon.Tab
-              list={noticeData['Upcoming']}
-              title="Upcoming"
-              emptyText="You have completed all your to-dos"
-              emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
-            />
-          </NoticeIcon>
+              <NoticeIcon.Tab
+                list={noticeData['Notice']}
+                title="Notice"
+                emptyText="You have reviewed all notifications"
+                emptyImage="https://gw.alipayobjects.com/zos/rmsportal/wAhyIChODzsoKIOBHcBk.svg"
+              />
+              <NoticeIcon.Tab
+                list={noticeData['News']}
+                title="News"
+                emptyText="You have read all the messages"
+                emptyImage="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
+              />
+              <NoticeIcon.Tab
+                list={noticeData['Upcoming']}
+                title="Upcoming"
+                emptyText="You have completed all your to-dos"
+                emptyImage="https://gw.alipayobjects.com/zos/rmsportal/HsIsxMZiWKrNUavQUXqx.svg"
+              />
+            </NoticeIcon>
+          )}
           {currentUser.name ? (
             <Dropdown overlay={menu}>
               <span className={`${styles.action} ${styles.account}`}>

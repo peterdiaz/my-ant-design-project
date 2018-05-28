@@ -163,6 +163,9 @@ class BasicLayout extends React.PureComponent {
         type: 'login/logout',
       });
     }
+    if (key === 'myProfile') {
+      this.props.dispatch(routerRedux.push('/profile'));
+    }
   };
   handleNoticeVisibleChange = visible => {
     if (visible) {
@@ -237,18 +240,6 @@ class BasicLayout extends React.PureComponent {
                   key: 'Pro Home',
                   title: 'Pro Home',
                   href: 'http://pro.ant.design',
-                  blankTarget: true,
-                },
-                {
-                  key: 'github',
-                  title: <Icon type="github" />,
-                  href: 'https://github.com/ant-design/ant-design-pro',
-                  blankTarget: true,
-                },
-                {
-                  key: 'Ant Design',
-                  title: 'Ant Design',
-                  href: 'http://ant.design',
                   blankTarget: true,
                 },
               ]}
